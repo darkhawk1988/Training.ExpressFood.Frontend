@@ -1,0 +1,163 @@
+<div id="frame">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>ExpressFood</mat-card-title>
+      <mat-card-subtitle>عضویت در سایت</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>نوع کاربری را انتخاب کنید</mat-label>
+          <mat-select [formControl]="userType">
+            <mat-option value="مشتری">مشتری</mat-option>
+            <mat-option value="صاحب رستوران">صاحب رستوران</mat-option>
+          </mat-select>
+          <mat-error *ngIf="userType.hasError('required')">
+            حتما نام کاربری را انتخاب کنید
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>نام کاربری</mat-label>
+          <input type="text" matInput [formControl]="username"
+                 placeholder="نام کاربری">
+          <!-- <mat-hint>لطفا نام کاربری را وارد کنید</mat-hint> -->
+          <mat-error *ngIf="username.hasError('required')">
+            حتما نام کاربری را وارد کنید
+          </mat-error>
+          <mat-error *ngIf="username.hasError('minlength')">
+            نام کاربری باید حداقل چهار حرف باشد
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>کلمه عبور</mat-label>
+          <input type="password" matInput [formControl]="password"
+                 placeholder="کلمه عبور">
+          <!-- <mat-hint>لطفا کلمه عبور را وارد کنید</mat-hint> -->
+          <mat-error *ngIf="password.hasError('required')">
+            حتما کلمه عبور را وارد کنید
+          </mat-error>
+          <mat-error *ngIf="password.hasError('minlength')">
+            کلمه عبور باید حداقل هشت حرف باشد
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>نام</mat-label>
+          <input type="text" (keypress)="onlyAlphabet($event)" matInput [formControl]="firstname"
+                 placeholder="نام">
+          <!-- <mat-hint>لطفا نام را وارد کنید</mat-hint> -->
+          <mat-error *ngIf="firstname.hasError('required')">
+            حتما نام را وارد کنید
+          </mat-error>
+          <mat-error *ngIf="firstname.hasError('minlength')">
+            نام باید حداقل دو حرف باشد
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>نام خانوادگی</mat-label>
+          <input type="text" (keypress)="onlyAlphabet($event)" matInput [formControl]="lastname"
+                 placeholder="نام خانوادگی">
+          <!-- <mat-hint>لطفا نام خانوادگی را وارد کنید</mat-hint> -->
+          <mat-error *ngIf="lastname.hasError('required')">
+            حتما نام خانوادگی را وارد کنید
+          </mat-error>
+          <mat-error *ngIf="lastname.hasError('minlength')">
+            نام خانوادگی باید حداقل چهار حرف باشد
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>جنسیت را انتخاب کنید</mat-label>
+          <mat-select [formControl]="gender">
+            <mat-option value="مرد">مرد</mat-option>
+            <mat-option value="زن">زن</mat-option>
+          </mat-select>
+          <mat-error *ngIf="gender.hasError('required')">
+            حتما جنسیت را انتخاب کنید
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>کد ملی</mat-label>
+          <input type="text" (keypress)="onlyNumber($event)" maxlength="10" matInput [formControl]="nationalCode"
+                 placeholder="نام خانوادگی">
+          <!-- <mat-hint>لطفا کد ملی را وارد کنید</mat-hint> -->
+          <mat-error *ngIf="nationalCode.hasError('required')">
+            حتما کد ملی را وارد کنید
+          </mat-error>
+          <mat-error *ngIf="nationalCode.hasError('maxlength') || nationalCode.hasError('minlength')">
+            کد ملی باید 10 رقم باشد
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>تاریخ تولد</mat-label>
+          <input matInput [matDatepicker]="picker" [formControl]="birthDate">
+          <mat-hint>سال/روز/ماه</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="birthDate.hasError('required')">
+            حتما تاریخ تولد را وارد کنید
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>شماره تلفن</mat-label>
+          <input type="text" (keypress)="onlyNumber($event)" maxlength="11" matInput [formControl]="cellphone"
+                 placeholder="شماره تلفن">
+          <!-- <mat-hint>لطفا شماره تلفن را وارد کنید</mat-hint> -->
+          <mat-error *ngIf="cellphone.hasError('required')">
+            حتما شماره تلفن را وارد کنید
+          </mat-error>
+          <mat-error *ngIf="cellphone.hasError('maxlength') || cellphone.hasError('minlength')">
+            شماره تلفن باید 11 رقم باشد
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>پست الکترونیکی</mat-label>
+          <input type="email" matInput [formControl]="emailAddress"
+                 placeholder="پست الکترونیکی">
+          <!-- <mat-hint>لطفا پست الکترونیکی را وارد کنید</mat-hint> -->
+          <mat-error *ngIf="emailAddress.hasError('email')">
+            پست الکترونیکی وارد شده اشتباه است
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="userType.value=='صاحب رستوران'" class="example-full-width">
+          <mat-label>نام رستوران</mat-label>
+          <input type="text" matInput [formControl]="restaurantName"
+                 placeholder="نام رستوران">
+          <!-- <mat-hint>لطفا نام رستوران را وارد کنید</mat-hint> -->
+          <mat-error *ngIf="restaurantName.hasError('required')">
+            حتما نام رستوران را وارد کنید
+          </mat-error>
+          <mat-error *ngIf="restaurantName.hasError('minlength')">
+            نام رستوران باید حداقل سه حرف باشد
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>آدرس</mat-label>
+          <textarea matInput placeholder="آدرس" [formControl]="address"></textarea>
+          <mat-error *ngIf="address.hasError('required')">
+            حتما آدرس را وارد کنید
+          </mat-error>
+          <mat-error *ngIf="address.hasError('minlength')">
+            آدرس باید حداقل 20 حرف باشد
+          </mat-error>
+        </mat-form-field>
+
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button [disabled]="check()==false" (click)="register()">ثبت نام</button>&nbsp;
+      <button mat-button (click)="loginPage()">انصراف</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

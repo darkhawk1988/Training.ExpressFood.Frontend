@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private loginService:LoginService){}
+  constructor(private loginService:LoginService,private router:Router){}
   username = new FormControl('', [Validators.required, Validators.minLength(4)]);
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   check(){
@@ -19,5 +20,8 @@ export class LoginComponent {
   }
   login(){
     this.loginService.login(this.username.value??'',this.password.value??'')
+  }
+  registerPage(){
+    this.router.navigateByUrl('/register');
   }
 }
