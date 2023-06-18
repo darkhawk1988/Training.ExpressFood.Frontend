@@ -1,9 +1,12 @@
-<div id="frame">
+<div id="frame" [class.light-background]="changeMode()==true" [class.dark-background]="changeMode()==false">
   <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>ExpressFood</mat-card-title>
       <mat-card-subtitle>ورود به سایت</mat-card-subtitle>
+      <form class="example-form" ngNativeValidate>
+        <mat-slide-toggle formControlName="enableWifi" [formControl]="mode">Dark Mode</mat-slide-toggle>
+      </form>
     </mat-card-header>
     <img mat-card-image src="../../../assets/images/login-background.jpg" alt="Photo of a Shiba Inu">
     <mat-card-content>

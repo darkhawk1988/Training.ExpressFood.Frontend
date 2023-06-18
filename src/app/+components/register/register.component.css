@@ -3,7 +3,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lightgray;
+}
+
+.light-background{
+  background-image: url('../../../assets/images/wallpaper-light-mode.jpg');
+  background-size: contain;
+}
+
+.dark-background{
+  background-image: url('../../../assets/images/wallpaper-dark-mode.jpg');
+  background-size: contain;
 }
 
 .example-card {
@@ -24,4 +33,10 @@
 
 .example-full-width {
   width: 100%;
+}
+
+.example-form mat-slide-toggle {
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }

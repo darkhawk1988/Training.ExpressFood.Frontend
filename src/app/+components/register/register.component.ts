@@ -25,6 +25,7 @@ export default class RegisterComponent {
   // person:Person=new Person();
   // people:Person[]=[];
   constructor(private router:Router){}
+  mode = new FormControl('', [Validators.requiredTrue]);
   userType = new FormControl('', [Validators.required]);
   username = new FormControl('', [Validators.required, Validators.minLength(4)]);
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
@@ -83,4 +84,10 @@ export default class RegisterComponent {
     }
   }
 
+  changeMode(){
+    if(this.mode.invalid==true){
+      return true;
+    }
+      return false;
+  }
 }
