@@ -49,8 +49,18 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
+          <mat-label>تایید کلمه عبور</mat-label>
+          <input type="password" matInput [formControl]="confirmPassword"
+                 placeholder="تایید کلمه عبور">
+          <!-- <mat-hint>لطفا تایید کلمه عبور را دوباره وارد کنید</mat-hint> -->
+          <mat-error *ngIf="confirmPassword.hasError('required')">
+            حتما کلمه عبور را دوباره وارد کنید
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
           <mat-label>نام</mat-label>
-          <input type="text" (keypress)="onlyAlphabet($event)" matInput [formControl]="firstname"
+          <input type="text"(keypress)="onlyPersianAlphabet($event)" matInput [formControl]="firstname"
                  placeholder="نام">
           <!-- <mat-hint>لطفا نام را وارد کنید</mat-hint> -->
           <mat-error *ngIf="firstname.hasError('required')">
@@ -59,11 +69,14 @@
           <mat-error *ngIf="firstname.hasError('minlength')">
             نام باید حداقل دو حرف باشد
           </mat-error>
+          <mat-error *ngIf="firstname.hasError('pattern')">
+            فقط حروف فارسی وارد کنید
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>نام خانوادگی</mat-label>
-          <input type="text" (keypress)="onlyAlphabet($event)" matInput [formControl]="lastname"
+          <input type="text" (keypress)="onlyPersianAlphabet($event)" matInput [formControl]="lastname"
                  placeholder="نام خانوادگی">
           <!-- <mat-hint>لطفا نام خانوادگی را وارد کنید</mat-hint> -->
           <mat-error *ngIf="lastname.hasError('required')">
@@ -71,6 +84,9 @@
           </mat-error>
           <mat-error *ngIf="lastname.hasError('minlength')">
             نام خانوادگی باید حداقل چهار حرف باشد
+          </mat-error>
+          <mat-error *ngIf="lastname.hasError('pattern')">
+            فقط حروف فارسی وارد کنید
           </mat-error>
         </mat-form-field>
 
@@ -88,13 +104,16 @@
         <mat-form-field class="example-full-width">
           <mat-label>کد ملی</mat-label>
           <input type="text" (keypress)="onlyNumber($event)" maxlength="10" matInput [formControl]="nationalCode"
-                 placeholder="نام خانوادگی">
+                 placeholder="کد ملی">
           <!-- <mat-hint>لطفا کد ملی را وارد کنید</mat-hint> -->
           <mat-error *ngIf="nationalCode.hasError('required')">
             حتما کد ملی را وارد کنید
           </mat-error>
           <mat-error *ngIf="nationalCode.hasError('maxlength') || nationalCode.hasError('minlength')">
             کد ملی باید 10 رقم باشد
+          </mat-error>
+          <mat-error *ngIf="nationalCode.hasError('pattern')">
+            فقط عدد وارد کنید
           </mat-error>
         </mat-form-field>
 
@@ -119,6 +138,9 @@
           </mat-error>
           <mat-error *ngIf="cellphone.hasError('maxlength') || cellphone.hasError('minlength')">
             شماره تلفن باید 11 رقم باشد
+          </mat-error>
+          <mat-error *ngIf="cellphone.hasError('pattern')">
+            فقط عدد وارد کنید
           </mat-error>
         </mat-form-field>
 
@@ -145,14 +167,31 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width" *ngIf="userType.value!='صاحب رستوران'">
           <mat-label>آدرس</mat-label>
-          <textarea matInput placeholder="آدرس" [formControl]="address"></textarea>
+          <textarea matInput placeholder="آدرس" (keypress)="onlyPersianAlphabetAndNumber($event)" [formControl]="address"></textarea>
           <mat-error *ngIf="address.hasError('required')">
             حتما آدرس را وارد کنید
           </mat-error>
           <mat-error *ngIf="address.hasError('minlength')">
             آدرس باید حداقل 20 حرف باشد
+          </mat-error>
+          <mat-error *ngIf="address.hasError('pattern')">
+            فقط حروف فارسی و عدد وارد کنید
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" *ngIf="userType.value=='صاحب رستوران'">
+          <mat-label>آدرس رستوران</mat-label>
+          <textarea matInput placeholder=" آدرس رستوران" (keypress)="onlyPersianAlphabetAndNumber($event)" [formControl]="resturantAddress"></textarea>
+          <mat-error *ngIf="resturantAddress.hasError('required')">
+            حتما آدرس رستوران را وارد کنید
+          </mat-error>
+          <mat-error *ngIf="resturantAddress.hasError('minlength')">
+            آدرس رستوران باید حداقل 20 حرف باشد
+          </mat-error>
+          <mat-error *ngIf="resturantAddress.hasError('pattern')">
+            فقط حروف فارسی و عدد وارد کنید
           </mat-error>
         </mat-form-field>
 
