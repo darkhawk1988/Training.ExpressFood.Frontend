@@ -1,2 +1,2 @@
 # Training.ExpressFood.Frontend
-#This project is just for training.
+This project is just for training.
