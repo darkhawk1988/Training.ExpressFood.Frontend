@@ -29,7 +29,7 @@ export class LoginComponent {
   registerPage(){
     this.router.navigateByUrl('/register');
   }
-  
+
   changeMode(){
     if(this.mode.invalid==true){
       return true;

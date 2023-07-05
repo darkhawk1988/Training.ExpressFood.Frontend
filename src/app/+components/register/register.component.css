@@ -1,5 +1,5 @@
 #frame{
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,7 @@
 }
 
 .example-card {
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .example-header-image {
@@ -39,4 +39,22 @@
   display: flex;
   justify-content: left;
   align-items: center;
+}
+
+.example-form-fields {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.example-form-fields mat-form-field + mat-form-field {
+  margin-right: 8px;
+  flex-grow: 1
+}
+
+.sortByGroup{
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px 0;
 }
