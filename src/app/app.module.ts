@@ -18,6 +18,7 @@ import {
   MatSlideToggleModule,
   _MatSlideToggleRequiredValidatorModule,
 } from '@angular/material/slide-toggle';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {
     MatNativeDateModule,
     MatSlideToggleModule,
     _MatSlideToggleRequiredValidatorModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
