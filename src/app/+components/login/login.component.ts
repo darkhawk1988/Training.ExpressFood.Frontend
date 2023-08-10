@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { BackendService } from 'src/app/+services/backend.service';
+import { BackendSecurityService } from 'src/app/+services/backend-security.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,12 @@ import { BackendService } from 'src/app/+services/backend.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(public backend:BackendService, private router:Router){}
+  constructor(private backend:BackendSecurityService,
+     private router:Router,
+     private _snackBar: MatSnackBar){}
+  isBusy:boolean=false;
+  message:string='';
+  keepMe:boolean=false;
   mode = new FormControl('', [Validators.requiredTrue]);
   username = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
@@ -23,11 +30,36 @@ export class LoginComponent {
   }
 
   login(){
-    this.backend.http
-    .post(
-      this.backend.securityAPI+'signin',
-      {username:this.username.value,password:this.password.value})
-      .subscribe(result => {console.log(result)});
+    this.isBusy=true;
+    let username:string|undefined=this.username.value?.toString();
+    let password:string|undefined=this.password.value?.toString();
+    this.backend.signin(username??'',password??'').subscribe(r=>
+      {
+        let result=r as any;
+        if(result.isSucceed==false){
+          this.message=result.message;
+          this._snackBar.open(this.message,'',{duration:4000});
+          this.password.setValue('');
+        }
+        else{
+          sessionStorage.setItem('token',result.token);
+          if(this.keepMe==true){
+            localStorage.setItem('token',result.token);
+          }
+          switch(result.type){
+            case 'SystemAdmin':
+              this.router.navigate(['/admins']);
+              break;
+            case 'RestaurantOwner':
+              this.router.navigate(['/restaurants']);
+              break;
+            case 'Customer':
+              this.router.navigate(['/customers']);
+              break;
+          }
+        }
+        this.isBusy=false;
+      });
   }
 
   registerPage(){

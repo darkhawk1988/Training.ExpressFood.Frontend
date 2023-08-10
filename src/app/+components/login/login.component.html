@@ -9,6 +9,7 @@
       </form>
     </mat-card-header>
     <img mat-card-image src="../../../assets/images/login-background.jpg" alt="Photo of a Shiba Inu">
+    <mat-progress-bar mode="indeterminate" *ngIf="isBusy==true"></mat-progress-bar>
     <mat-card-content>
       <form class="example-form">
         <mat-form-field class="example-full-width">
@@ -35,9 +36,11 @@
             کلمه عبور باید حداقل هشت حرف باشد
           </mat-error>
         </mat-form-field>
+        <mat-checkbox class="example-margin" name="keepMe" [(ngModel)]="keepMe">من را به خاطر بسپار</mat-checkbox>
       </form>
     </mat-card-content>
-    <mat-card-actions>
+    <!-- <mat-progress-bar mode="indeterminate" *ngIf="isBusy==true"></mat-progress-bar> -->
+    <mat-card-actions *ngIf="isBusy==false">
       <button mat-button (click)="login()" [disabled]="check()==false">ورود</button>&nbsp;
       <button mat-button (click)="registerPage()">ثبت نام</button>
     </mat-card-actions>

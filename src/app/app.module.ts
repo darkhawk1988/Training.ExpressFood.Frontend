@@ -19,6 +19,9 @@ import {
   _MatSlideToggleRequiredValidatorModule,
 } from '@angular/material/slide-toggle';
 import {HttpClientModule} from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import {HttpClientModule} from '@angular/common/http';
     MatNativeDateModule,
     MatSlideToggleModule,
     _MatSlideToggleRequiredValidatorModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule,
+    MatCheckboxModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
