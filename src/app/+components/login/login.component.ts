@@ -50,7 +50,7 @@ export class LoginComponent {
             case 'SystemAdmin':
               this.router.navigate(['/admins']);
               break;
-            case 'RestaurantOwner':
+            case 'RestauranOwner':
               this.router.navigate(['/restaurants']);
               break;
             case 'Customer':
@@ -62,9 +62,9 @@ export class LoginComponent {
       });
   }
 
-  registerPage(){
-    this.router.navigateByUrl('/register');
-  }
+  // registerPage(){
+  //   this.router.navigateByUrl('/register');
+  // }
 
   changeMode(){
     if(this.mode.invalid==true){

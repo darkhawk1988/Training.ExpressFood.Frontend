@@ -41,8 +41,8 @@
     </mat-card-content>
     <!-- <mat-progress-bar mode="indeterminate" *ngIf="isBusy==true"></mat-progress-bar> -->
     <mat-card-actions *ngIf="isBusy==false">
-      <button mat-button (click)="login()" [disabled]="check()==false">ورود</button>&nbsp;
-      <button mat-button (click)="registerPage()">ثبت نام</button>
+      <button mat-raised-button color="primary" (click)="login()" [disabled]="check()==false">ورود</button>&nbsp;
+      <button mat-button [routerLink]="'/register'">ثبت نام</button>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -14,6 +14,7 @@
         >
       </form>
     </mat-card-header>
+    <mat-progress-bar mode="indeterminate" *ngIf="isBusy==true"></mat-progress-bar>
     <mat-card-content>
       <form class="example-form">
         <label for="sortByGroup">مشخصات کاربری</label>
@@ -21,11 +22,11 @@
           <div class="example-form-fields">
             <mat-form-field>
               <mat-label>نوع کاربری</mat-label>
-              <mat-select [formControl]="userType">
-                <mat-option value="مشتری">مشتری</mat-option>
-                <mat-option value="صاحب رستوران">صاحب رستوران</mat-option>
+              <mat-select [formControl]="type">
+                <mat-option value="2">مشتری</mat-option>
+                <mat-option value="1">صاحب رستوران</mat-option>
               </mat-select>
-              <mat-error *ngIf="userType.hasError('required')">
+              <mat-error *ngIf="type.hasError('required')">
                 حتما نام کاربری را انتخاب کنید
               </mat-error>
             </mat-form-field>
@@ -132,8 +133,8 @@
             <mat-form-field>
               <mat-label>جنسیت</mat-label>
               <mat-select [formControl]="gender">
-                <mat-option value="مرد">مرد</mat-option>
-                <mat-option value="زن">زن</mat-option>
+                <mat-option value="male">مرد</mat-option>
+                <mat-option value="female">زن</mat-option>
               </mat-select>
               <mat-error *ngIf="gender.hasError('required')">
                 حتما جنسیت را انتخاب کنید
@@ -168,7 +169,7 @@
             </mat-form-field>
           </div>
 
-          <mat-form-field class="example-full-width">
+          <!-- <mat-form-field class="example-full-width">
             <mat-label>تاریخ تولد</mat-label>
             <input
               matInput
@@ -184,7 +185,7 @@
             <mat-error *ngIf="birthDate.hasError('required')">
               حتما تاریخ تولد را وارد کنید
             </mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
 
         <label for="sortByGroup">مشخصات ارتباطی</label>
@@ -231,10 +232,10 @@
           </mat-form-field>
         </div>
 
-        <label for="sortByGroup">آدرس</label>
+        <!-- <label for="sortByGroup">آدرس</label>
         <div class="sortByGroup">
           <mat-form-field
-            *ngIf="userType.value == 'صاحب رستوران'"
+            *ngIf="type.value == '1'"
             class="example-full-width"
           >
             <mat-label>نام رستوران</mat-label>
@@ -243,19 +244,19 @@
               matInput
               [formControl]="restaurantName"
               placeholder="نام رستوران"
-            />
+            /> -->
             <!-- <mat-hint>لطفا نام رستوران را وارد کنید</mat-hint> -->
-            <mat-error *ngIf="restaurantName.hasError('required')">
+            <!-- <mat-error *ngIf="restaurantName.hasError('required')">
               حتما نام رستوران را وارد کنید
             </mat-error>
             <mat-error *ngIf="restaurantName.hasError('minlength')">
               نام رستوران باید حداقل سه حرف باشد
             </mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
 
-          <mat-form-field
+          <!-- <mat-form-field
             class="example-full-width"
-            *ngIf="userType.value != 'صاحب رستوران'"
+            *ngIf="type.value != '1'"
           >
             <mat-label>آدرس</mat-label>
             <textarea
@@ -273,11 +274,11 @@
             <mat-error *ngIf="address.hasError('pattern')">
               فقط حروف فارسی و عدد وارد کنید
             </mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
 
-          <mat-form-field
+          <!-- <mat-form-field
             class="example-full-width"
-            *ngIf="userType.value == 'صاحب رستوران'"
+            *ngIf="type.value == '1'"
           >
             <mat-label>آدرس رستوران</mat-label>
             <textarea
@@ -295,15 +296,15 @@
             <mat-error *ngIf="resturantAddress.hasError('pattern')">
               فقط حروف فارسی و عدد وارد کنید
             </mat-error>
-          </mat-form-field>
-        </div>
+          </mat-form-field> -->
+        <!-- </div> -->
       </form>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions *ngIf="isBusy==false">
       <button mat-button [disabled]="check() == false" (click)="register()">
         ثبت نام</button
       >&nbsp;
-      <button mat-button (click)="loginPage()">انصراف</button>
+      <button mat-button [routerLink]="'/login'">انصراف</button>
     </mat-card-actions>
   </mat-card>
 </div>
