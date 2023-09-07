@@ -8,6 +8,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 *{
   font-family: Persian;
 }
-mat-card-title,mat-card-subtitle,mat-option{
+mat-card-title,mat-card-subtitle,mat-option,mat-toolbar,.mdc-list-item{
   font-family: persian !important;
 }

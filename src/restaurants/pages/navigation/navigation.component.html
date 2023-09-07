@@ -3,11 +3,11 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>مدیریت</mat-toolbar>
+    <mat-toolbar>مدیریت رستوران</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">درخواست های من</a>
+      <a mat-list-item [routerLink]="'myrequests'">درخواست های من</a>
       <a mat-list-item href="#">رستوران های من</a>
-      <a mat-list-item href="#">سفارش های من</a>
+      <a mat-list-item href="#">درخواست های من</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,6 +22,6 @@
       </button>
       <span>سامانه سفارش غذای فود اکسپرس</span>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>افزودن رستوران جدید</h1>
+<div mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>عنوان رستوران</mat-label>
+      <input type="text" matInput [formControl]="title" (keypress)="onlyPersianAlphabetAndNumber($event)" placeholder="عنوان رستوران">
+      <mat-error *ngIf="title.hasError('required')">
+        حتما عنوان رستوران را وارد کنید
+      </mat-error>
+      <mat-error *ngIf="title.hasError('minlength')">
+        نام رستوران باید حداقل سه حرف باشد
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>آدرس رستوران</mat-label>
+      <textarea matInput placeholder=" آدرس رستوران" (keypress)="onlyPersianAlphabetAndNumber($event)" [formControl]="resturantAddress"></textarea>
+        <mat-error *ngIf="resturantAddress.hasError('required')">
+          حتما آدرس رستوران را وارد کنید
+        </mat-error>
+        <mat-error *ngIf="resturantAddress.hasError('minlength')">
+          آدرس رستوران باید حداقل 20 حرف باشد
+        </mat-error>
+        <mat-error *ngIf="resturantAddress.hasError('pattern')">
+          فقط حروف فارسی و عدد وارد کنید
+        </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" cdkFocusInitial [disabled]="check() == false">تایید</button>
+  <button mat-raised-button matDialogClose="">انصراف</button>
+</div>
