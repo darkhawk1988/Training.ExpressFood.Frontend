@@ -94,7 +94,7 @@ export default class RegisterComponent {
     let lastname:string|undefined=this.lastname.value?.toString();
     let gender:string|undefined=this.gender.value?.toString();
     let nationalCode:string|undefined=this.nationalCode.value?.toString();
-    // let birthDate:Date|undefined=this.birthDate.value
+    //let birthDate:Date|undefined=new Date(this.birthDate.value?);
     let cellphone:string|undefined=this.cellphone.value?.toString();
     let emailAddress:string|undefined=this.emailAddress.value?.toString();
     this.backend.signup(type??'',username??'',password??'',firstname??'',

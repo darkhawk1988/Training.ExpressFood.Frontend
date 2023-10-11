@@ -1,0 +1,36 @@
+.grid {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .grid td, .grid th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .grid tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .grid tr:hover {background-color: #ddd;}
+  
+  .grid th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: right;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  .search{
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: none;
+  }
+
+  td:first-of-type, th:first-of-type{
+    position: sticky;
+    left: 0;
+    background-color: whitesmoke;
+  }

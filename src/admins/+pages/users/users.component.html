@@ -1,0 +1,6 @@
+<app-data-grid
+    [dataSource]="'http://localhost:5093/list'"
+    [columns]="columns"
+    (onEdit)="edit($event)"
+    (onDelete)="remove($event)"
+/>

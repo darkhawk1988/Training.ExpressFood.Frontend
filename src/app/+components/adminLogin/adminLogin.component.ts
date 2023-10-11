@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { BackendService } from 'src/app/+services/backend.service';
 import { BackendSecurityService } from 'src/app/+services/backend-security.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-adminLogin',
+  templateUrl: './adminLogin.component.html',
+  styleUrls: ['./adminLogin.component.css']
 })
-export class LoginComponent {
+export class adminLoginComponent {
   constructor(private backend:BackendSecurityService,
      private router:Router,
      private _snackBar: MatSnackBar){}
@@ -33,7 +32,7 @@ export class LoginComponent {
     this.isBusy=true;
     let username:string|undefined=this.username.value?.toString();
     let password:string|undefined=this.password.value?.toString();
-    this.backend.signin(username??'',password??'').subscribe(r=>
+    this.backend.adminSignin(username??'',password??'').subscribe(r=>
       {
         let result=r as any;
         if(result.isSucceed==false){
@@ -47,11 +46,8 @@ export class LoginComponent {
             localStorage.setItem('token',result.token);
           }
           switch(result.type){
-            case 'RestauranOwner':
-              this.router.navigate(['/restaurants']);
-              break;
-            case 'Customer':
-              this.router.navigate(['/customers']);
+            case 'SystemAdmin':
+              this.router.navigate(['/admins']);
               break;
           }
         }

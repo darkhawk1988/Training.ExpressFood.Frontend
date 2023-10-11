@@ -1,0 +1,46 @@
+#frame{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.light-background{
+  background-image: url('../../../assets/images/wallpaper-light-mode.jpg');
+  background-size: contain;
+}
+
+.dark-background{
+  background-image: url('../../../assets/images/wallpaper-dark-mode.jpg');
+  background-size: contain;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('../../../assets/images/login-logo.png');
+  background-size: cover;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin-top: 1vh;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-form mat-slide-toggle {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.example-margin {
+  margin: 0 10px;
+}

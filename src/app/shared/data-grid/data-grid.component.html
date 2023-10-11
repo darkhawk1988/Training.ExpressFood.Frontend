@@ -1,0 +1,38 @@
+<table class="grid">
+    <thead>
+        <tr>
+            <th *ngFor="let item of columns">{{item.title}}</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th *ngFor="let item of columns">
+                <input class="search" placeholder="جستجو کنید">
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of data">
+            <td *ngFor="let col of columns">
+                <ng-container [ngSwitch]="col.type">
+                    <ng-container *ngSwitchCase="'text'">{{item[col.field]}}</ng-container>
+                    <ng-container *ngSwitchCase="'check'">
+                        <mat-checkbox disabled [checked]="item[col.field]"></mat-checkbox>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'button'">
+                        <button mat-raised-button>{{item[col.field]}}</button>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>{{item[col.field]}}</ng-container>
+                </ng-container>
+            </td>
+            <td>
+                <button (click)="onEdit.emit(item)" mat-raised-button color="primary">
+                    <mat-icon fontIcon="edit"></mat-icon>
+                </button>&nbsp;
+                <button (click)="onDelete.emit(item)" mat-raised-button color="warn">
+                    <mat-icon fontIcon="delete"></mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

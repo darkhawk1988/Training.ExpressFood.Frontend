@@ -7,10 +7,17 @@ import { BackendService } from './backend.service';
 export class BackendSecurityService {
 
   constructor(private backend:BackendService) { }
+  
   signin(username:string,password:string){
     return this.backend.http.post
       (this.backend.securityAPI+'signin',{username:username,password:password});
   }
+
+  adminSignin(username:string,password:string){
+    return this.backend.http.post
+      (this.backend.securityAPI+'adminsignin',{username:username,password:password});
+  }
+
   signup(type:number,username:string,password:string,firstname:string,lastname:string,
     gender:string,nationalCode:string,cellphone:string,emailAddress:string){
     return this.backend.http.post
